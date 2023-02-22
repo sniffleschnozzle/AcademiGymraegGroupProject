@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="author" content="William Stephenson">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<title>Edit Word</title>
+</head>
+<body>
+<header class="p-3 bg-dark text-white">
+	<div class="text-start">
+	Edit Word
+		<a th:href="@{/}" type="button" class="btn btn-outline-light me-2">Home</a>
+		<a th:href="@{/word}" type="button" class="btn btn-outline-light me-2">Manage Words</a>
+	</div>
+</header>
+<div class="p-3">
+	<Form th:action="@{/word/edit}" th:object="${word}" method="post">
+	<h2>Edit Noun: <span th:text="*{englishNoun}"></span></h2>
+	<input type="hidden" th:field="*{nounId}"/>
+	<div th:errorclass="error" th:errors="*{englishNoun}"></div>
+	<div th:errorclass="error" th:errors="*{welshNoun}"></div>
+	
+	<label for="english" class="p-1">English Noun:</label>
+	<input type="text" id="english" th:field="*{englishNoun}" /><br/>
+	
+	<label for="welsh" class="p-1">Welsh Noun:</label>
+	<input type="text" id="welsh" th:field="*{welshNoun}" /><br/>
+	
+	<label for="gender" class="p-1">Gender:</label><br/>
+	<input type="radio" id="gender" th:field="*{welshNounGender}" th:id="${welshNounGender}" value="feminine"/>Feminine<br />
+	<input type="radio" id="gender" th:field="*{welshNounGender}" th:id="${welshNounGender}" value="masculine"/>Masculine<br />
+	
+	<div class="pt-1"><button type="submit" >Save changes</button></div>	
+	</Form>
+</div>
+</body>
+</html>
